@@ -1,0 +1,50 @@
+plugins {
+  id "com.jfrog.bintray" version "1.7.3"
+}
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.calldei'
+//#version = '0.0.2-SNAPSHOT'
+
+description = """url-scheme-registry"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+      jcenter() 
+}
+dependencies {
+    compile group: 'cglib', name: 'cglib-nodep', version:'2.2.2'
+    testCompile group: 'com.google.guava', name: 'guava', version:'12.0'
+    testCompile group: 'junit', name: 'junit-dep', version:'4.10'
+    testCompile group: 'org.easytesting', name: 'fest-assert', version:'1.4'
+}
+
+
+jar {
+  manifest {
+    attributes(
+      "Automatic-Module-Name": project.group
+     )
+  }
+}
+
+task sourceJar(type: Jar) {
+    group group
+    description 'An archive of the source code'
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    sourceJar
+}
+
+apply from: 'gradle/publishing.gradle'
