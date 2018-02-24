@@ -1,3 +1,6 @@
+Forked from valdar/url-scheme-registry forked from brianm/url-scheme-registry
+Converted to Gradle build
+
 Library to make it easy to register new URL schemes for java.net.URL.
 Consider:
 
@@ -38,23 +41,15 @@ and class name conventions to accomplish this. It does *not* use
 using this library should run fine inside Tomcat which does use that
 method).
 
-Releases are distributed via
-[Maven Central](http://search.maven.org/). There are two variants, one
-with a dependency on cglib-2.2.2
+Releases are distributed via jcenter https://bintray.com/daldei/maven/url-scheme-registry
 
-    <dependency>
-        <groupId>org.skife.url</groupId>
-        <artifactId>url-scheme-registry</artifactId>
-        <version>0.0.1</version>
-    </dependency>
+Gradle:
 
-or  and one which renamespaces and bundles cglib-2.2.2.
-
-    <dependency>
-        <groupId>org.skife.url</groupId>
-        <artifactId>url-scheme-registry</artifactId>
-        <classifier>nodep</classifier>
-        <version>0.0.1</version>
-    </dependency>
+    repositories {
+       jcenter()
+    }
+    dependencies {
+      compile 'com.calldei:url-scheme-registry:1.0'
+    }
 
 Good luck!
